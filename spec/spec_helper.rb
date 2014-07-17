@@ -62,7 +62,7 @@ RSpec.configure do |config|
     # Enable only the newer, non-monkey-patching expect syntax.
     # For more details, see:
     #   - http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax
-    expectations.syntax = :should
+    expectations.syntax = [:expect, :should]
   end
 
 =begin
