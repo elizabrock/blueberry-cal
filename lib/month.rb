@@ -1,4 +1,14 @@
 class Month
+  MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+  def initialize(month, year)
+    @month = month
+  end
+
+  def name
+    MONTHS[@month]
+  end
+
   def to_s
 <<EOS
      July 2017
