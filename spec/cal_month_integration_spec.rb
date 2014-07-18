@@ -1,4 +1,42 @@
 RSpec.describe "Cal's full month integration" do
+  context "Error Cases" do
+    context "incorrect usage" do
+      it "prints a usage message for no arguments" do
+        expected = "usage: cal [month] year\n"
+        actual = `./cal`
+        actual.should == expected
+      end
+      it "prints a usage message for full dates" do
+        expected = "usage: cal [month] year\n"
+        actual = `./cal 12 24 2016`
+        actual.should == expected
+      end
+    end
+    context "incorrect month number" do
+      it "prints an error message for month 0" do
+        expected = "cal: 0 is not a month number (1..12)\n"
+        actual = `./cal 0 2016`
+        actual.should == expected
+      end
+      it "prints an error message for month 16" do
+        expected = "cal: 16 is not a month number (1..12)\n"
+        actual = `./cal 16 2016`
+        actual.should == expected
+      end
+    end
+    context "incorrect year number" do
+      it "prints an error message for small years" do
+        expected = "cal: year 1799 not in range 1800..3000\n"
+        actual = `./cal 12 1799`
+        actual.should == expected
+      end
+      it "prints an error message for large years" do
+        expected = "cal: year 3001 not in range 1800..3000\n"
+        actual = `./cal 12 3001`
+        actual.should == expected
+      end
+    end
+  end
   context "Edge Cases" do
     it "should print a month that is only 4 weeks long" do
       expected = <<EOS
