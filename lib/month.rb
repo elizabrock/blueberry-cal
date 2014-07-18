@@ -15,6 +15,15 @@ class Month
     "#{name} #{@year}".center(20).rstrip
   end
 
+  def length
+    length = 30 + ( ( @month + (@month/8).floor ) % 2 )
+    if @month == 2
+      amount_to_subtract = (@year.leap_year? ? 1 : 2)
+      length = length - amount_to_subtract
+    end
+    length
+  end
+
   def name
     MONTHS[@month]
   end
@@ -22,8 +31,7 @@ class Month
   def to_s
     output = header
     output << "\nSu Mo Tu We Th Fr Sa\n"
-    month_length = 31
-    full_month = Array.new(month_length){ |index| index + 1 }
+    full_month = Array.new(length){ |index| index + 1 }
     padding.times{ full_month.unshift(nil) }
 
     full_month.each_slice(WEEK_LENGTH) do |week|

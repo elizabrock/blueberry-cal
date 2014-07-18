@@ -1,7 +1,7 @@
 require_relative '../lib/zellers_congruence'
 
 RSpec.describe ZellersCongruence do
-  context "#calculate" do
+  context ".calculate" do
     it "returns 0 (Sat) for July 2000" do
       ZellersCongruence.calculate(07, 2000).should == 0
     end

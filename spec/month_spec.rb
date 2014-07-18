@@ -1,7 +1,7 @@
 require_relative '../lib/month'
 
 RSpec.describe Month do
-  context ".header" do
+  context "#header" do
     it "matches cal for December 2012" do
       month = Month.new(12, 2012)
       month.header.should == "   December 2012"
@@ -11,7 +11,48 @@ RSpec.describe Month do
       month.header.should == "     July 1901"
     end
   end
-  context ".name" do
+  context "#length" do
+    it "correctly tabulates January" do
+      Month.new(1, 2012).length.should == 31
+    end
+    it "correctly tabulates February in a leap year" do
+      Month.new(2, 2009).length.should == 28
+    end
+    it "correctly tabulates February in a regular year" do
+      Month.new(2, 2012).length.should == 29
+    end
+    it "correctly tabulates March" do
+      Month.new(3, 2012).length.should == 31
+    end
+    it "correctly tabulates April" do
+      Month.new(4, 2012).length.should == 30
+    end
+    it "correctly tabulates May" do
+      Month.new(5, 2012).length.should == 31
+    end
+    it "correctly tabulates June" do
+      Month.new(6, 2012).length.should == 30
+    end
+    it "correctly tabulates July" do
+      Month.new(7, 2012).length.should == 31
+    end
+    it "correctly tabulates August" do
+      Month.new(8, 2012).length.should == 31
+    end
+    it "correctly tabulates September" do
+      Month.new(9, 2012).length.should == 30
+    end
+    it "correctly tabulates October" do
+      Month.new(10, 2012).length.should == 31
+    end
+    it "correctly tabulates November" do
+      Month.new(11, 2012).length.should == 30
+    end
+    it "correctly tabulates December" do
+      Month.new(12, 2012).length.should == 31
+    end
+  end
+  context "#name" do
     it "translates January" do
       Month.new(1, 2012).name.should == "January"
     end
