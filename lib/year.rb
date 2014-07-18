@@ -1,6 +1,12 @@
 class Year
+  YEAR_WIDTH = 63
+
   def initialize(year)
     @year = year
+  end
+
+  def header
+    "#{@year}".center(YEAR_WIDTH).rstrip
   end
 
   def leap_year?
@@ -12,6 +18,6 @@ class Year
   end
 
   def to_s
-    @year.to_s
+    header
   end
 end

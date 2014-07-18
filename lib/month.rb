@@ -3,6 +3,7 @@ require_relative 'zellers_congruence'
 
 class Month
   MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  MONTH_WIDTH = 20
   MONTH_GRID_SIZE = 6 * 7
   WEEK_LENGTH = 7
   DAY_WIDTH = 2
@@ -13,7 +14,7 @@ class Month
   end
 
   def header
-    "#{name} #{@year}".center(20).rstrip
+    "#{name} #{@year.to_i}".center(MONTH_WIDTH).rstrip
   end
 
   def length
