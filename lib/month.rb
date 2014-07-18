@@ -1,3 +1,4 @@
+require_relative 'year'
 require_relative 'zellers_congruence'
 
 class Month
@@ -7,7 +8,7 @@ class Month
 
   def initialize(month, year)
     @month = month
-    @year = year
+    @year = Year.new(year)
   end
 
   def header
@@ -36,7 +37,7 @@ class Month
   private
 
   def padding
-    zellers = ZellersCongruence.calculate(@month, @year)
+    zellers = ZellersCongruence.calculate(@month, @year.to_i)
     (zellers + 6 ) % 7
   end
 end
