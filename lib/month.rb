@@ -2,7 +2,10 @@ require_relative 'year'
 require_relative 'zellers_congruence'
 
 class Month
-  MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  MONTHS = [nil, "January", "February", "March",
+                 "April",   "May",      "June",
+                 "July",    "August",   "September",
+                 "October", "November", "December" ]
   MONTH_WIDTH = 20
   MONTH_HEIGHT = 8
   WEEK_LENGTH = 7

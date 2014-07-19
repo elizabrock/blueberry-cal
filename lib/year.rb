@@ -29,7 +29,7 @@ class Year
       template = Array.new(Month::MONTH_HEIGHT)
       m1, m2, m3 = quarter
       three_months = template.zip(m1, m2, m3)
-      three_months.each{ |line| line.shift } # removes nils from template array
+      three_months.each(&:shift) # removes nils from template array
       three_months.each do |line_array|
         justified_lines = line_array.map{|l| l.to_s.ljust(Month::MONTH_WIDTH, " ")}
         output << justified_lines.join("  ")
