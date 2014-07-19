@@ -14,9 +14,6 @@ RSpec.describe "Cal's full year integration" do
     end
   end
   context "Edge Cases" do
-    before do
-      skip
-    end
     it "should print years with short months" do
       expected = <<EOS
                              2015

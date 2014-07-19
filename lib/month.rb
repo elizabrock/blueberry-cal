@@ -4,8 +4,9 @@ require_relative 'zellers_congruence'
 class Month
   MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   MONTH_WIDTH = 20
-  MONTH_GRID_SIZE = 6 * 7
+  MONTH_HEIGHT = 8
   WEEK_LENGTH = 7
+  MONTH_GRID_SIZE = 6 * WEEK_LENGTH
   DAY_WIDTH = 2
 
   def initialize(month, year)
