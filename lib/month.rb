@@ -32,20 +32,19 @@ class Month
   end
 
   def to_s
-    output = header
-    output << "\nSu Mo Tu We Th Fr Sa\n"
+    output = [ header, "Su Mo Tu We Th Fr Sa" ]
     full_month = Array.new(length){ |index| index + 1 }
     padding.times{ full_month.unshift(nil) }
     until(full_month.length == MONTH_GRID_SIZE) do
-      full_month << nil
+      full_month << ""
     end
 
     full_month.each_slice(WEEK_LENGTH) do |week|
       days = week.map{ |day| day.to_s.rjust(DAY_WIDTH) }
       output << days.join(" ").rstrip
-      output << "\n"
     end
-    output
+    output << ""
+    output.join("\n")
   end
 
   private
