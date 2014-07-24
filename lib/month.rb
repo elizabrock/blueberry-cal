@@ -35,17 +35,15 @@ class Month
     MONTHS[@month]
   end
 
-
-
   def to_s
     output = [header, "Su Mo Tu We Th Fr Sa"]
-    start_n = (-1 * padding)
-    end_n = MONTH_GRID_SIZE - padding
-    days = (start_n..end_n).map do |day|
-      ((day >= 0 and day < length) ? (day + 1).to_s : "").rjust(DAY_WIDTH)
+    days = (1..length).map{ |i| i.to_s.rjust(DAY_WIDTH) + " " }
+    padding.times{ days.unshift("   ") }
+    until(days.length == MONTH_GRID_SIZE) do
+      days << ""
     end
-    days.each_slice(WEEK_LENGTH){|line| output << line.join(" ").rstrip }
-    output.join("\n")
+    days.each_slice(WEEK_LENGTH){|line| output << line.join("").rstrip }
+    output.join("\n") + "\n"
   end
 
   private
