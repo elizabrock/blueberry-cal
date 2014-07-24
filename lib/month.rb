@@ -36,11 +36,20 @@ class Month
   end
 
   def to_s
-    output = [header, "Su Mo Tu We Th Fr Sa"]
-    days = (1..MONTH_GRID_SIZE).map{ |n| (1..length).include?(n - padding) ? (n - padding).to_s : "" }
-    days = days.map{|day| day.rjust(DAY_WIDTH) }
-    days.each_slice(WEEK_LENGTH){|line| output << line.join(" ").rstrip }
-    output.join("\n") + "\n"
+    output = header
+    output << "\nSu Mo Tu We Th Fr Sa\n"
+    full_month = (1..length).to_a
+    padding.times{ full_month.unshift("") }
+    until(full_month.length == MONTH_GRID_SIZE) do
+      full_month << ""
+    end
+
+    full_month.each_slice(WEEK_LENGTH) do |week|
+      days = week.map{ |day| day.to_s.rjust(DAY_WIDTH) }
+      output << days.join(" ").rstrip
+      output << "\n"
+    end
+    output
   end
 
   private
