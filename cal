@@ -8,21 +8,16 @@ unless ARGV.length.between?(1, 2)
   exit
 end
 
-year = ARGV.pop.to_i
-unless (1800..3000).include? year
-  puts "cal: year #{year} not in range 1800..3000"
-  exit
-end
-
-if ARGV.empty?
-  year = Year.new(year)
-  puts year.to_s
-else
-  month = ARGV.pop.to_i
-  unless (1..12).include? month
-    puts "cal: #{month} is not a month number (1..12)"
-    exit
+begin
+  year = ARGV.pop.to_i
+  if ARGV.empty?
+    year = Year.new(year)
+    puts year.to_s
+  else
+    month = ARGV.pop.to_i
+    month = Month.new(month, year)
+    puts month.to_s
   end
-  month = Month.new(month, year)
-  puts month.to_s
+rescue ArgumentError => e
+  puts e.message
 end

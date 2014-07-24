@@ -13,6 +13,9 @@ class Month
   DAY_WIDTH = 2
 
   def initialize(month, year)
+    unless (1..12).include? month
+      raise ArgumentError, "cal: #{month} is not a month number (1..12)"
+    end
     @month = month
     @year = Year.new(year)
   end
