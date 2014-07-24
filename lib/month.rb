@@ -21,6 +21,7 @@ class Month
     "#{name} #{@year.to_i}".center(MONTH_WIDTH).rstrip
   end
 
+  # See: http://en.wikipedia.org/wiki/Gregorian_calendar#Description
   def length
     length = 30 + ( ( @month + (@month/8).floor ) % 2 )
     if @month == 2
@@ -34,19 +35,16 @@ class Month
     MONTHS[@month]
   end
 
-  def to_s
-    output = [ header, "Su Mo Tu We Th Fr Sa" ]
-    full_month = Array.new(length){ |index| index + 1 }
-    padding.times{ full_month.unshift(nil) }
-    until(full_month.length == MONTH_GRID_SIZE) do
-      full_month << ""
-    end
 
-    full_month.each_slice(WEEK_LENGTH) do |week|
-      days = week.map{ |day| day.to_s.rjust(DAY_WIDTH) }
-      output << days.join(" ").rstrip
+
+  def to_s
+    output = [header, "Su Mo Tu We Th Fr Sa"]
+    start_n = (-1 * padding)
+    end_n = MONTH_GRID_SIZE - padding
+    days = (start_n..end_n).map do |day|
+      ((day >= 0 and day < length) ? (day + 1).to_s : "").rjust(DAY_WIDTH)
     end
-    output << ""
+    days.each_slice(WEEK_LENGTH){|line| output << line.join(" ").rstrip }
     output.join("\n")
   end
 

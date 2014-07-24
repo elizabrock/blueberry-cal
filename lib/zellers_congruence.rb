@@ -1,4 +1,6 @@
 class ZellersCongruence
+  # See: http://en.wikipedia.org/wiki/Zeller's_congruence
+  # (0 = Saturday, 1 = Sunday, 2 = Monday, ...)
   def self.calculate(month, year)
     q = 1 # day of month
     m = (month <= 2) ? month + 12 : month
